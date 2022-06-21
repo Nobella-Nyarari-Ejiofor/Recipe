@@ -1,6 +1,7 @@
 """
 Test custom django management commands
 """
+# flake8: noqa
 from unittest.mock import patch
 from psycopg2 import OperationalError as Psycopg2Error
 
@@ -13,6 +14,7 @@ class CommandTests(SimpleTestCase):
     """
     Test commands
     """
+
     def test_wait_for_db_ready(self, patched_check):
         """
         Testinf]g for the database if the database is ready
@@ -35,5 +37,3 @@ class CommandTests(SimpleTestCase):
         self.assertEqual(patched_check.call_count, 6)
         patched_check.assert_called_with(databases=['default'])
         
-
-
