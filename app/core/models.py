@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
          """
          Create , save and return a a new user 
          """
-         
+
          if not email:
              raise ValueError("User must have an email address")
         #  Normalize email method is provided by the Base User Manager
@@ -30,6 +30,17 @@ class UserManager(BaseUserManager):
          user.save(using=self._db)
 
          return user
+
+    def create_superuser(self, email, password):
+        """
+        CReates , save and return new superuser
+        """
+        user = self.create_user(email,password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+
+        return user
          
 class User(AbstractBaseUser,PermissionsMixin):
     """

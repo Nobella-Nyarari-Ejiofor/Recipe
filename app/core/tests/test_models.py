@@ -31,7 +31,7 @@ class ModelTests(TestCase):
             ['Test2@Example.com','Test2@example.com'],
             ['TEST3@EXAMPLE.COM', 'TEST3@example.com'],
             ['test4@example.COM','test4@example.com'],
-            
+
         ]
 
         for email, expected in sample_emails:
@@ -45,3 +45,14 @@ class ModelTests(TestCase):
         """
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user('','test123')
+
+
+    def test_create_superuser(self):
+        """
+        Test creating a super user
+        """
+        user = get_user_model().objects.create_superuser(
+            'test@example.com',
+            'test123',
+
+        )
