@@ -1,3 +1,4 @@
+# noqa :
 """
 Test custom django management commands
 """
