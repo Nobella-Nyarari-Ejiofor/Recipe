@@ -21,6 +21,8 @@ class UserManager(BaseUserManager):
          """
          Create , save and return a a new user 
          """
+         if not email:
+             raise ValueError("User must have an email address")
         #  Normalize email method is provided by the Base User Manager
          user = self.model(email=self.normalize_email(email), **extra_field)
          user.set_password(password)
