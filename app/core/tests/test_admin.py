@@ -1,3 +1,4 @@
+# noqa :
 """
 Tests for django admin modifications
 """
@@ -36,3 +37,13 @@ class AdminSiteTests(TestCase):
 
         self.assertContains(res,self.user.name)
         self.assertContains(res,self.user.email)
+
+    def test_edit_user_page(self):
+        """
+        test if user edit page works
+        """
+        url = reverse('admin:core_user_change', args=[self.user.id])
+        res = self.client.get(url)
+        #to ensure page loads successsfuly with a http 200 response
+
+        self.assertEqual(res.status_code, 200)
