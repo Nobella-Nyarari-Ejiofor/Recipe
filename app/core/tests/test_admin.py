@@ -1,4 +1,4 @@
-# noqa :
+# flake8: noqa
 """
 Tests for django admin modifications
 """
