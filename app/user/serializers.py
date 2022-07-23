@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Seriallizers for the API View . NOte serializers convert python objects to json or vice versa
 """
@@ -19,4 +20,3 @@ class UserSerializer(serializers.ModelSerializer):
         """
         return get_user_model().objects.create_user(**validated_data)
 
-        
