@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+# flake8: noqa
 # Create your views here.
 from rest_framework import generics
 from user.serializers import UserSerializer

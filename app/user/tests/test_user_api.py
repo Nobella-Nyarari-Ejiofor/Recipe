@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 Tests  for the user api
 """
