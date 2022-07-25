@@ -36,9 +36,9 @@ class PublicUserApiTests(TestCase):
         Test creating a user is successful by posting the data to the API
         """
 
-        payload ={
+        payload = {
             'email': 'test@example.com',
-            'password':'testpass123',
+            'password' : 'testpass123',
             'name':'Test Name',
 
         }
@@ -171,7 +171,7 @@ class PrivateUserApiTests(TestCase):
         Test POST is not allowed for the me api endpoint 
         """
 
-        res = self.client.get(ME_URL)
+        res = self.client.post(ME_URL)
         self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_user_profile(self):
