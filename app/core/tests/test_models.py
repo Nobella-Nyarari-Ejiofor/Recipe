@@ -69,14 +69,14 @@ class ModelTests(TestCase):
 
         user = get_user_model().objects.create_user(
             'test@example.com',
-            'testpass123'
+            'testpass123',
 
         )
-        recipe = models.recipe.objects.create(
+        recipe = models.Recipe.objects.create(
             user = user,
             title = 'Simple Recipe Name',
             time_minutes=5,
             price = Decimal('5.50'),
-            dexcription = ' Sample recipe description'
+            description = ' Sample recipe description'
         )
         self.assertEqual(str(recipe), recipe.title)

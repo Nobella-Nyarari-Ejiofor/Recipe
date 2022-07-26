@@ -57,7 +57,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-class Recipe(model.Model):
+class Recipe(models.Model):
     """
     Recipe object
     """
