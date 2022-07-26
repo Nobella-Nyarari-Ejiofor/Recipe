@@ -37,7 +37,7 @@ def create_recipe(user, **params):
         'time_minutes': 22,
         'price': Decimal('5.25'),
         'description': 'Sample description of a recipe',
-        'link': 'https://example.com/recipe.pdf'
+        'link': 'https://example.com/recipe.pdf',
     }
 
     defaults.update(params)
@@ -128,6 +128,9 @@ class PrivateRecipeApiTests(TestCase):
             'title':'Sample Recipe',
             'time_minutes': 30,
             'price': Decimal('5.99'),
+            'description': 'Sample description of a recipe',
+            'link': 'https://example.com/recipe.pdf',
+    }
         }
 
         res = self.client.post(RECIPES_URL, payload)
