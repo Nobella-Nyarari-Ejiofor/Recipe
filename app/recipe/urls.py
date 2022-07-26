@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Urls mapping for the recipe api app
 """
