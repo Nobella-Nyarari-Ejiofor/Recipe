@@ -131,7 +131,7 @@ class PrivateRecipeApiTests(TestCase):
             'description': 'Sample description of a recipe',
             'link': 'https://example.com/recipe.pdf',
     }
-        }
+        
 
         res = self.client.post(RECIPES_URL, payload)
         self.assertEqual(res.status_code , status.HTTP_201_CREATED)
