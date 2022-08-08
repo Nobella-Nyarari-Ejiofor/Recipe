@@ -247,7 +247,7 @@ class PrivateRecipeApiTests(TestCase):
                      {'name' : 'Dinner'}],
         }
 
-        res = self.client.post(TAGS_URL , payload, format = 'json')
+        res = self.client.post(RECIPES_URL , payload, format = 'json')
 
         self.assertEqual(res.status_code , status.HTTP_201_CREATED)
         recipes = Recipe.objects.filter(user = self.user)
@@ -265,7 +265,7 @@ class PrivateRecipeApiTests(TestCase):
         """
         Test creating a recipe with existing tag
         """
-        tag_indina = Tag.objects.create(user = self.user , name = 'Indian')
+        tag_indian= Tag.objects.create(user = self.user , name = 'Indian')
         payload = {
             'title': 'Pongal',
             'time_minutes' : 60,
@@ -279,11 +279,11 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(recipes.count(),1)
         recipe = recipes[0]
         self.assertEqual(recipe.tags.count() , 2)
-        self.assertIn(tag_indiana , recipe.tags.all())
+        self.assertIn(tag_indian , recipe.tags.all())
 
         for tag in payload['tags']:
             exists = recipe.tags.filter(
                 name = tag['name'],
                 user = self.user,
             ).exists()
-            self.assertTrue(esists)
+            self.assertTrue(exists)
