@@ -42,8 +42,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """
         serializer.save(user = self.request.user)
 
-
-class TagViewSet(mixins.ListModelMixin , viewsets.GenericViewSet):
+#by using mixin.UpdateModelMixin we do not need to create code for updating the tags list
+class TagViewSet(mixins.UpdateModelMixin,
+                 mixins.ListModelMixin , 
+                 viewsets.GenericViewSet):
     """
     Manage tags in the database
     """
@@ -57,3 +59,5 @@ class TagViewSet(mixins.ListModelMixin , viewsets.GenericViewSet):
         Filter queryset to authenticated user .
         """
         return self.queryset.filter(user = self.request.user).order_by('-name')
+
+
