@@ -43,7 +43,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         serializer.save(user = self.request.user)
 
 #by using mixin.UpdateModelMixin we do not need to create code for updating the tags list
-class TagViewSet(mixins.UpdateModelMixin,
+class TagViewSet(mixins.DestroyModelMixin,
+                 mixins.UpdateModelMixin,
                  mixins.ListModelMixin , 
                  viewsets.GenericViewSet):
     """
