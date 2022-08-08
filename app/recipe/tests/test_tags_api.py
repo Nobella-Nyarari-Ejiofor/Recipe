@@ -16,7 +16,7 @@ from recipe.serializers import TagSerializer
 
 TAGS_URL = reverse('recipe:tag-list')
 
-def craete_user(email = 'user@example.com', password = 'testpass123'):
+def create_user(email = 'user@example.com', password = 'testpass123'):
     """
     Create and return a user .
     """
@@ -52,10 +52,10 @@ class PrivateTagsApiTest(TestCase):
         """
         Test for retrieving a likst of tags
         """
-        Tags.objects.create(user = self.user ,name = 'Vegan')
-        Tags.objects.create(user = self.user , name = 'Fruity')
+        Tag.objects.create(user = self.user ,name = 'Vegan')
+        Tag.objects.create(user = self.user , name = 'Fruity')
 
-        res = self.cient.get(TAGS_URL)
+        res = self.client.get(TAGS_URL)
 
         tags = Tag.objects.all().order_by('-name')
         serializer = TagSerializer(tags , many = True)
