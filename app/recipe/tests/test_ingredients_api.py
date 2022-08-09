@@ -19,9 +19,9 @@ def detail_url(ingredient_id):
     """
     Create and return an ingredient detail url
     """
-    return reverse('recipe:ingredient_detail', args = [ingredient_id])
+    return reverse('recipe:ingredient-detail', args = [ingredient_id])
 
-def create_user(    email = 'ingredient@example.com' , password = 'example12'):
+def create_user( email = 'ingredient@example.com' , password = 'example12'):
     """
     create and return user 
     """
@@ -97,12 +97,12 @@ class PrivateIngredientsAPITests(TestCase):
         payload = {
             'name' : 'Ginger'
         }
-        url =  detail_url(ingredient.url)
+        url =  detail_url(ingredient.id)
         res = self.client.patch(url , payload)
 
         self.assertEqual(res.status_code ,status.HTTP_200_OK)
         ingredient.refresh_from_db()
-        self.assertEqual(payload.name, ingredient.name)
+        self.assertEqual(payload['name'], ingredient.name)
 
         
 

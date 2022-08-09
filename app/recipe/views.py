@@ -62,7 +62,8 @@ class TagViewSet(mixins.DestroyModelMixin,
         return self.queryset.filter(user = self.request.user).order_by('-name')
 
 class IngredientViewSet(mixins.ListModelMixin ,
-                        viewsets.GenericViewSet):
+                        viewsets.GenericViewSet,
+                        mixins.UpdateModelMixin):
      """
      Manage ingredients in the database
      """
