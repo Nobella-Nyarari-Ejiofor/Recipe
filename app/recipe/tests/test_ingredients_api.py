@@ -9,7 +9,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from core.models import models
+from core.models import Ingredient
 
 from recipe.serializers import IngredientSerializer
 
@@ -62,7 +62,7 @@ class PrivateIngredientsAPITests(TestCase):
         ingredients =  Ingredient.objects.all().order_by('-name')
         serializer = IngredientSerializer(ingredients, many = True)
 
-        self.assertEqual(res.status_code , status.HTTP_200_OK)\
+        self.assertEqual(res.status_code , status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
 
