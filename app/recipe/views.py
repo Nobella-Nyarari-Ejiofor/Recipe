@@ -42,16 +42,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """
         serializer.save(user = self.request.user)
 
-#by using mixin.UpdateModelMixin we do not need to create code for updating the tags list
-class TagViewSet(mixins.DestroyModelMixin,
+class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
                  mixins.UpdateModelMixin,
                  mixins.ListModelMixin , 
                  viewsets.GenericViewSet):
     """
-    Manage tags in the database
-    """
-    serializer_class = serializers.TagSerializer
-    queryset = Tag.objects.all()
+    Base Viewset for recipe attributes
+    """      
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -61,23 +58,22 @@ class TagViewSet(mixins.DestroyModelMixin,
         """
         return self.queryset.filter(user = self.request.user).order_by('-name')
 
-class IngredientViewSet(mixins.ListModelMixin ,
-                        viewsets.GenericViewSet,
-                        mixins.UpdateModelMixin,
-                        mixins.DestroyModelMixin):
+
+
+#by using mixin.UpdateModelMixin we do not need to create code for updating the tags list
+class TagViewSet(BaseRecipeAttrViewSet):
+    """
+    Manage tags in the database
+    """
+    serializer_class = serializers.TagSerializer
+    queryset = Tag.objects.all()
+    
+    
+class IngredientViewSet(BaseRecipeAttrViewSet):
      """
      Manage ingredients in the database
      """
      serializer_class = serializers.IngredientSerializer
      queryset = Ingredient.objects.all()
-     authentication_classes = [TokenAuthentication]
-     permission_classes = [IsAuthenticated]
-
-     def get_queryset(self):
-        """
-        Filter queryset to authenticated user 
-        """
-        return Ingredient.objects.filter(user = self.request.user).order_by('-name')
-
                                                
 
