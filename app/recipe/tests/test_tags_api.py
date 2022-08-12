@@ -160,8 +160,8 @@ class PrivateTagsApiTest(TestCase):
             user = self.user ,
         )
 
-        recipe1.tags.add(tag1)
-        recipe2.tags.add(tag2)
+        recipe1.tags.add(tag)
+        recipe2.tags.add(tag)
 
         res = self.client.get(TAGS_URL, {'assigned_only': 1})
 

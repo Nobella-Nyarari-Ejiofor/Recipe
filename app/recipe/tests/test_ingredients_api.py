@@ -152,16 +152,16 @@ class PrivateIngredientsAPITests(TestCase):
         Test filtered ingredients returns a unique list
         """
 
-        ing = Ingredient.objects.crerate(user = self.user , name ='Eggs')
-        Ingredients.objects.create(user = self.user , name ='Lentils')
+        ing = Ingredient.objects.create(user = self.user , name ='Eggs')
+        Ingredient.objects.create(user = self.user , name ='Lentils')
         recipe1 = Recipe.objects.create(
             title = 'Eggs Benedict',
             time_minutes = 60 ,
             price = Decimal('4.50'),
             user = self.user,
-
         ) 
-          recipe2 = Recipe.objects.create(
+
+        recipe2 = Recipe.objects.create(
             title = 'Eggs Salad',
             time_minutes = 90 ,
             price = Decimal('3.50'),
