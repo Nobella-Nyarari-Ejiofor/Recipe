@@ -466,7 +466,7 @@ class PrivateRecipeApiTests(TestCase):
         Test filtering recipes by tags
         """
         r1 = create_recipe(user = self.user , title = "Curry Vegetables")
-        r2 = create_recipe ( user = self.user , name = 'Aubergine with Tahini')
+        r2 = create_recipe ( user = self.user , title = 'Aubergine with Tahini')
         tag1 = Tag.objects.create(user = self.user , name ='Vegan')
         tag2 = Tag.objects.create(user = self.user , name ='Vegeterian')
         r1.tag.add(tag1)
@@ -499,7 +499,7 @@ class PrivateRecipeApiTests(TestCase):
         r3 = create_recipe(user = self.user , title = 'Red Lentil Daal')
 
 
-        params = {'ingredients' : f'{ingredient2.id},{ingredient2.id}'}
+        params = {'ingredients' : f'{ingredient1.id},{ingredient2.id}'}
         res = self.client.get(RECIPES_URL ,params)
          
         s1 = RecipeSerializer(r1)
