@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 core views for the app
 """
